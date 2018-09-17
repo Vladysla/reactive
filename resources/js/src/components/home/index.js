@@ -1,11 +1,29 @@
-import React from  'react'
+import React, {Component} from  'react'
+import {connect} from 'react-redux'
 
-const Home = () => {
-    return (
-        <div>
-            Home
-        </div>
-    )
+import {fetchProducts} from "../../actions/index";
+
+class Home extends Component
+{
+    componentDidMount(){
+        this.props.fetchProducts()
+    }
+
+    render(){
+        return(
+            <div>
+                Home
+            </div>
+        )
+    }
 }
 
-export default Home
+const mapStateToProps = state => ({
+    products: state.products
+})
+
+const mapDispatchToProps = {
+    fetchProducts
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
